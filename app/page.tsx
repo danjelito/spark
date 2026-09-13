@@ -81,8 +81,8 @@ export default function Home() {
     <main className="chat-shell">
       <header className="chat-header">
         <div>
-          <p className="eyebrow">SPARK</p>
-          <h1>Asisten Referensi BPJS Ketenagakerjaan.</h1>
+          <p className="eyebrow">Asisten Referensi BPJS Ketenagakerjaan</p>
+          <h1>SPARK</h1>
         </div>
         <div className="account-actions">
           <span className="account-email">{session?.user?.email}</span>
