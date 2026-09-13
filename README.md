@@ -1,8 +1,11 @@
-# Reference Desk
+# SPARK — Asisten Referensi BPJS Ketenagakerjaan
 
 Small Next.js site for asking questions against a set of reference documents.
 The browser talks to a Next.js Route Handler. The Route Handler talks to the
 OpenAI Responses API and its File Search tool.
+
+The app uses a dark theme, the SF Pro Display font stack, the Spark logo on the
+login page and browser tab, and a photo background on the login page.
 
 ## Requirements
 
@@ -37,6 +40,7 @@ API key from the OpenAI API platform.
    OPENAI_API_KEY=your_api_key_here
    OPENAI_VECTOR_STORE_ID=vs_your_vector_store_id_here
    OPENAI_MODEL=gpt-5.6-luna
+   NEXTAUTH_URL=http://localhost:3000
    NEXTAUTH_SECRET=generate_a_long_random_secret
    GOOGLE_CLIENT_ID=your_google_client_id
    GOOGLE_CLIENT_SECRET=your_google_client_secret
@@ -44,6 +48,7 @@ API key from the OpenAI API platform.
    ```
 
    `OPENAI_MODEL` is optional. The default is `gpt-5.6-luna`.
+   `NEXTAUTH_URL` is your app URL. Locally it is `http://localhost:3000`.
 
    Generate `NEXTAUTH_SECRET` with a password generator or:
 
@@ -63,10 +68,22 @@ API key from the OpenAI API platform.
    http://localhost:3000/api/auth/callback/google
    ```
 
-6. Add the production redirect URI after deploying:
+6. Add the local authorized JavaScript origin:
+
+   ```text
+   http://localhost:3000
+   ```
+
+7. Add the production redirect URI after deploying:
 
    ```text
    https://your-domain.com/api/auth/callback/google
+   ```
+
+8. Add the production authorized JavaScript origin:
+
+   ```text
+   https://your-domain.com
    ```
 
 The application checks the Google account email on the server. Only verified
@@ -113,13 +130,33 @@ refresh, tab close, or sign-out clears the chat.
 
 ## Deploy to Vercel
 
-1. Push this project to a private or public Git repository.
+1. Push this project to a private Git repository.
 2. Import the repository into Vercel.
-3. Add `OPENAI_API_KEY`, `OPENAI_VECTOR_STORE_ID`, and optionally
-   `OPENAI_MODEL` under Project Settings > Environment Variables.
-4. Deploy.
+3. Under Project Settings > Environment Variables, add these variables
+   (scope them to Production):
 
-Do not add the API key to source code or a `NEXT_PUBLIC_*` variable.
+   ```env
+   OPENAI_API_KEY=your_api_key
+   OPENAI_VECTOR_STORE_ID=vs_your_vector_store_id
+   OPENAI_MODEL=gpt-5.6-luna
+   NEXTAUTH_URL=https://your-project.vercel.app
+   NEXTAUTH_SECRET=your_production_secret
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   ALLOWED_EMAIL_DOMAIN=bpjsketenagakerjaan.go.id
+   ```
+
+   Generate a production `NEXTAUTH_SECRET` with:
+
+   ```bash
+   openssl rand -base64 32
+   ```
+
+   Use a different `NEXTAUTH_SECRET` from local development.
+4. Redeploy after adding or changing variables so they take effect.
+
+Do not add any secret to source code or a `NEXT_PUBLIC_*` variable. `.env.local`
+is ignored by Git and must never be committed.
 
 ## Request flow
 

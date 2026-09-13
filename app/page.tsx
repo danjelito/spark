@@ -2,6 +2,9 @@
 
 import { FormEvent, KeyboardEvent, useState } from "react";
 import { signOut, useSession } from "next-auth/react";
+import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
+import remarkGfm from "remark-gfm";
 
 type Message = {
   role: "user" | "assistant";
@@ -100,7 +103,15 @@ export default function Home() {
         {messages.map((message, index) => (
           <article className={`bubble-row ${message.role}`} key={`${message.role}-${index}`}>
             <div className="bubble-meta">{message.role === "user" ? "YOU" : "SPARK"}</div>
-            <div className="bubble">{message.content}</div>
+            <div className="bubble markdown-content">
+              {message.role === "assistant" ? (
+                <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+                  {message.content}
+                </ReactMarkdown>
+              ) : (
+                message.content
+              )}
+            </div>
           </article>
         ))}
 
