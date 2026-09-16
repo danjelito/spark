@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, KeyboardEvent, useState } from "react";
+import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
@@ -86,6 +87,7 @@ export default function Home() {
         </div>
         <div className="account-actions">
           <span className="account-email">{session?.user?.email}</span>
+          <Link className="faq-link" href="/faq">FAQ</Link>
           <button className="text-button" type="button" onClick={handleSignOut}>
             Sign out
           </button>

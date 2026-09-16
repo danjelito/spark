@@ -3,7 +3,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "Reference Desk",
+  title: "SPARK",
   description: "A focused way to find answers in your reference library.",
   icons: {
     icon: "/spark-logo.png",

@@ -128,6 +128,9 @@ guessing, and say when an answer cannot be found in the available references.
 The chat shows an Indonesian greeting and does not persist conversations; a
 refresh, tab close, or sign-out clears the chat.
 
+Authenticated users can open `/faq` from the top navigation to read SPARK
+usage guidance and contact the SPARK administrator.
+
 ## Deploy to Vercel
 
 1. Push this project to a private Git repository.
