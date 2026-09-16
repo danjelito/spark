@@ -321,14 +321,15 @@ button { cursor: pointer; }
 .markdown-content th { background: var(--panel-raised); }
 .faq-content { padding: 42px 0 60px; }
 .back-link {
-  color: var(--accent);
+  color: var(--danger);
   display: inline-block;
   font-size: 13px;
+  font-style: italic;
   font-weight: 600;
-  margin-bottom: 24px;
+  margin-bottom: 42px;
   text-decoration: none;
 }
-.back-link:hover { color: var(--accent-strong); text-decoration: underline; }
+.back-link:hover { color: #ff817a; text-decoration: underline; }
 .faq-panel {
   background: var(--panel);
   border: 1px solid var(--line);
