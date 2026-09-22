@@ -40,7 +40,14 @@ Apabila terdapat dokumen atau referensi yang perlu ditambahkan ke *Knowledge Dat
 
 📧 *[spark.admin@bpjsketenagakerjaan.go.id](mailto:spark.admin@bpjsketenagakerjaan.go.id)*
 
-Referensi dapat berupa *Peraturan Direksi (Perdir), Juknis, Pedoman, Tutorial, SOP, Surat Edaran*, maupun dokumen resmi lainnya yang dapat meningkatkan kelengkapan dan akurasi pengetahuan SPARK.`;
+Referensi dapat berupa *Peraturan Direksi (Perdir), Juknis, Pedoman, Tutorial, SOP, Surat Edaran*, maupun dokumen resmi lainnya yang dapat meningkatkan kelengkapan dan akurasi pengetahuan SPARK.
+
+---
+
+### Q: Kenapa muncul “Percakapan mengandung pesan yang tidak valid atau kosong”?
+
+*Admin SPARK:*
+Silakan reload/refresh halaman.`;
 
 export default function FaqPage() {
   const { data: session } = useSession();
@@ -54,19 +61,25 @@ export default function FaqPage() {
         </div>
         <div className="account-actions">
           <span className="account-email">{session?.user?.email}</span>
-          <Link className="faq-link" href="/faq">FAQ</Link>
-          <button className="text-button" type="button" onClick={() => signOut({ callbackUrl: "/login" })}>
+          <Link className="faq-link" href="/faq">
+            FAQ
+          </Link>
+          <button
+            className="text-button"
+            type="button"
+            onClick={() => signOut({ callbackUrl: "/login" })}
+          >
             Sign out
           </button>
         </div>
       </header>
 
       <section className="faq-content">
-        <Link className="back-link" href="/">← Kembali ke SPARK</Link>
+        <Link className="back-link" href="/">
+          ← Kembali ke SPARK
+        </Link>
         <article className="faq-panel markdown-content">
-          <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
-            {faqContent}
-          </ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>{faqContent}</ReactMarkdown>
         </article>
       </section>
     </main>
