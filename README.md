@@ -133,7 +133,8 @@ usage guidance and contact the SPARK administrator.
 
 ## Deploy to Vercel
 
-1. Push this project to a private Git repository.
+1. Push this project to a Git repository. This repository is public; keep every
+   secret in Vercel's Environment Variables and never commit `.env.local`.
 2. Import the repository into Vercel.
 3. Under Project Settings > Environment Variables, add these variables
    (scope them to Production):
